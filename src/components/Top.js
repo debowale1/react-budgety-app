@@ -3,6 +3,12 @@ import React, { Component } from "react";
 class Top extends Component {
   state = {};
   render() {
+    const {
+      totalIncome,
+      totalExpense,
+      budgetValue,
+      expensePercentage,
+    } = this.props;
     return (
       <div className="top">
         <div className="budget">
@@ -11,12 +17,14 @@ class Top extends Component {
             <span className="budget__title--month">%Month%</span>:
           </div>
 
-          <div className="budget__value">+ 2,345.64</div>
+          <div className="budget__value">+ {budgetValue.toFixed(2)}</div>
 
           <div className="budget__income clearfix">
             <div className="budget__income--text">Income</div>
             <div className="right">
-              <div className="budget__income--value">+ 4,300.00</div>
+              <div className="budget__income--value">
+                + {totalIncome.toFixed(2)}
+              </div>
               <div className="budget__income--percentage">&nbsp;</div>
             </div>
           </div>
@@ -24,8 +32,12 @@ class Top extends Component {
           <div className="budget__expenses clearfix">
             <div className="budget__expenses--text">Expenses</div>
             <div className="right clearfix">
-              <div className="budget__expenses--value">- 1,954.36</div>
-              <div className="budget__expenses--percentage">45%</div>
+              <div className="budget__expenses--value">
+                - {totalExpense.toFixed(2)}
+              </div>
+              <div className="budget__expenses--percentage">
+                {Math.round(expensePercentage)}%
+              </div>
             </div>
           </div>
         </div>
