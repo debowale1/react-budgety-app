@@ -17,7 +17,12 @@ class Top extends Component {
             <span className="budget__title--month">%Month%</span>:
           </div>
 
-          <div className="budget__value">+ {budgetValue.toFixed(2)}</div>
+          <div className="budget__value">
+            {" "}
+            {budgetValue > 0
+              ? `+ ${budgetValue.toFixed(2)}`
+              : budgetValue.toFixed(2)}
+          </div>
 
           <div className="budget__income clearfix">
             <div className="budget__income--text">Income</div>
@@ -36,7 +41,9 @@ class Top extends Component {
                 - {totalExpense.toFixed(2)}
               </div>
               <div className="budget__expenses--percentage">
-                {Math.round(expensePercentage)}%
+                {expensePercentage > 0
+                  ? `${Math.round(expensePercentage)}%`
+                  : "--"}
               </div>
             </div>
           </div>

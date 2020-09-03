@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Top from "./components/Top";
 import AddBudget from "./components/AddBudget";
+// import Income from "./components/Income";
+// import Expense from "./components/Expense";
+import IncomeExpenseContainer from "./components/IncomeExpenseContainer";
 import "./App.css";
 
 class App extends Component {
@@ -30,6 +33,13 @@ class App extends Component {
     };
     //add the new Item to the state
     this.setState({ allData: [...this.state.allData, newItem] });
+    //clear form state
+  };
+  //delete item
+  handleDelete = (id) => {
+    this.setState({
+      allData: this.state.allData.filter((item) => item.id !== id),
+    });
   };
   render() {
     const { allData } = this.state;
@@ -52,6 +62,13 @@ class App extends Component {
         />
         <div className="bottom">
           <AddBudget handleClick={this.handleClick} />
+          <div className="container clearfix">
+            <IncomeExpenseContainer
+              incomes={incomes}
+              expenses={expenses}
+              handleDelete={this.handleDelete}
+            />
+          </div>
         </div>
       </div>
     );
