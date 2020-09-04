@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Top from "./components/Top";
 import AddBudget from "./components/AddBudget";
-// import Income from "./components/Income";
-// import Expense from "./components/Expense";
 import IncomeExpenseContainer from "./components/IncomeExpenseContainer";
+import Header from "./components/layout/Header";
+import About from "./components/layout/About";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 class App extends Component {
@@ -53,24 +54,32 @@ class App extends Component {
     //calculate expense %
     const expensePercentage = (totalExpense / totalIncome) * 100;
     return (
-      <div className="App">
-        <Top
-          totalIncome={totalIncome}
-          totalExpense={totalExpense}
-          budgetValue={budgetValue}
-          expensePercentage={expensePercentage}
-        />
-        <div className="bottom">
-          <AddBudget handleClick={this.handleClick} />
-          <div className="container clearfix">
-            <IncomeExpenseContainer
-              incomes={incomes}
-              expenses={expenses}
-              handleDelete={this.handleDelete}
-            />
-          </div>
+      <Router>
+        <div className="App">
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <Top
+                totalIncome={totalIncome}
+                totalExpense={totalExpense}
+                budgetValue={budgetValue}
+                expensePercentage={expensePercentage}
+              />
+              <div className="bottom">
+                <AddBudget handleClick={this.handleClick} />
+                <div className="container clearfix">
+                  <IncomeExpenseContainer
+                    incomes={incomes}
+                    expenses={expenses}
+                    handleDelete={this.handleDelete}
+                  />
+                </div>
+              </div>
+            </Route>
+            <Route exact path="/about" component={About} />
+          </Switch>
         </div>
-      </div>
+      </Router>
     );
   }
 }
