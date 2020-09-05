@@ -21,11 +21,6 @@ const Header = () => {
                   About
                 </Link>
               </li>
-              <li className="user-nav__user-item">
-                <Link to="" className="user-nav__user-link">
-                  Contact
-                </Link>
-              </li>
             </ul>
 
             {/* <span className="user-nav__user-name">User</span> */}

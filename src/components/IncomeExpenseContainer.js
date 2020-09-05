@@ -3,7 +3,7 @@ import Income from "./Income";
 import Expense from "./Expense";
 
 const IncomeExpenseContainer = (props) => {
-  const { incomes, expenses } = props;
+  const { incomes, expenses, totalIncome } = props;
   return (
     <React.Fragment>
       <div className="income">
@@ -26,6 +26,7 @@ const IncomeExpenseContainer = (props) => {
             <Expense
               key={expense.id}
               expense={expense}
+              totalIncome={totalIncome}
               handleDelete={props.handleDelete}
             />
           ))}

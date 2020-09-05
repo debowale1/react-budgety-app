@@ -71,6 +71,7 @@ class App extends Component {
                   <IncomeExpenseContainer
                     incomes={incomes}
                     expenses={expenses}
+                    totalIncome={totalIncome}
                     handleDelete={this.handleDelete}
                   />
                 </div>

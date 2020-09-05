@@ -3,6 +3,14 @@ import React from "react";
 const Top = (props) => {
   const { totalIncome, totalExpense, budgetValue, expensePercentage } = props;
 
+  const getExpensePercentage = (num, total) => {
+    if (isFinite(num / total)) {
+      return `${Math.round((num / total) * 100)}%`;
+    } else {
+      return "--";
+    }
+  };
+
   return (
     <div className="top">
       <div className="budget">
@@ -35,9 +43,7 @@ const Top = (props) => {
               - {totalExpense.toFixed(2)}
             </div>
             <div className="budget__expenses--percentage">
-              {expensePercentage > 0
-                ? `${Math.round(expensePercentage)}%`
-                : "--"}
+              {getExpensePercentage(totalExpense, totalIncome)}
             </div>
           </div>
         </div>
