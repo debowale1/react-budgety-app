@@ -6,6 +6,7 @@ import Header from "./components/layout/Header";
 import About from "./components/layout/About";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import { v4 as uuidv4 } from "uuid";
 
 class App extends Component {
   state = {
@@ -17,17 +18,13 @@ class App extends Component {
     ],
   };
 
-  generateRandomID = () => {
-    return Math.floor(Math.random() * 1000000);
-  };
-
   //handle submit
   handleClick = (type, description, value) => {
     console.log(type, description, value);
 
     //create new budget item
     const newItem = {
-      id: this.generateRandomID(),
+      id: uuidv4(),
       description,
       amount: +value,
       type,

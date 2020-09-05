@@ -12,10 +12,6 @@ class AddBudget extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  // handleClick = () => {
-  //   console.log("got here");
-  // };
-
   render() {
     const { type, description, value } = this.state;
     return (
