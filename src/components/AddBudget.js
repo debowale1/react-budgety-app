@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import InputGroup from "./InputGroup";
 
 class AddBudget extends Component {
   state = {
@@ -30,15 +31,15 @@ class AddBudget extends Component {
             <option value="inc">+</option>
             <option value="exp">-</option>
           </select>
-          <input
+          <InputGroup
             type="text"
-            className="add__description"
             placeholder="Add description"
+            className="add__description"
             value={description}
             name="description"
             onChange={this.handleChange}
           />
-          <input
+          <InputGroup
             type="number"
             className="add__value"
             placeholder="Value"
@@ -46,7 +47,6 @@ class AddBudget extends Component {
             name="value"
             onChange={this.handleChange}
           />
-
           <button
             className="add__btn"
             onClick={this.props.handleClick.bind(
