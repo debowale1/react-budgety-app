@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const context = React.createContext();
+const Context = React.createContext();
 
 export class Provider extends Component {
   state = {
@@ -13,11 +13,11 @@ export class Provider extends Component {
   };
   render() {
     return (
-      <context.Provider value={this.state}>
+      <Context.Provider value={this.state}>
         {this.props.children}
-      </context.Provider>
+      </Context.Provider>
     );
   }
 }
 
-export const Consumer = context.Consumer;
+export const Consumer = Context.Consumer;

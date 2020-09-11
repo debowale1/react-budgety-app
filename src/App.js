@@ -7,17 +7,9 @@ import About from "./components/layout/About";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { v4 as uuidv4 } from "uuid";
+import { Provider } from "./context";
 
 class App extends Component {
-  state = {
-    allData: [
-      { id: 1, description: "website design", amount: 500, type: "inc" },
-      { id: 2, description: "Cash Gift", amount: 150, type: "inc" },
-      { id: 3, description: "Rent", amount: 350, type: "exp" },
-      { id: 4, description: "Data Sub", amount: 100, type: "exp" },
-    ],
-  };
-
   //handle submit
   handleClick = (type, description, value) => {
     console.log(type, description, value);
@@ -40,44 +32,26 @@ class App extends Component {
     });
   };
   render() {
-    const { allData } = this.state;
-    const incomes = allData.filter((item) => item.type === "inc");
-    const expenses = allData.filter((item) => item.type === "exp");
-    //calculate totals
-    const totalIncome = incomes.reduce((acc, cur) => acc + cur.amount, 0);
-    const totalExpense = expenses.reduce((acc, cur) => acc + cur.amount, 0);
-    //budget value
-    const budgetValue = totalIncome - totalExpense;
-    //calculate expense %
-    const expensePercentage = (totalExpense / totalIncome) * 100;
     return (
-      <Router>
-        <div className="App">
-          <Header />
-          <Switch>
-            <Route exact path="/">
-              <Top
-                totalIncome={totalIncome}
-                totalExpense={totalExpense}
-                budgetValue={budgetValue}
-                expensePercentage={expensePercentage}
-              />
-              <div className="bottom">
-                <AddBudget handleClick={this.handleClick} />
-                <div className="container clearfix">
-                  <IncomeExpenseContainer
-                    incomes={incomes}
-                    expenses={expenses}
-                    totalIncome={totalIncome}
-                    handleDelete={this.handleDelete}
-                  />
+      <Provider>
+        <Router>
+          <div className="App">
+            <Header />
+            <Switch>
+              <Route exact path="/">
+                <Top />
+                <div className="bottom">
+                  <AddBudget handleClick={this.handleClick} />
+                  <div className="container clearfix">
+                    <IncomeExpenseContainer handleDelete={this.handleDelete} />
+                  </div>
                 </div>
-              </div>
-            </Route>
-            <Route exact path="/about" component={About} />
-          </Switch>
-        </div>
-      </Router>
+              </Route>
+              <Route exact path="/about" component={About} />
+            </Switch>
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }

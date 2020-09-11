@@ -1,8 +1,7 @@
 import React from "react";
+import { Consumer } from "../context";
 
-const Top = (props) => {
-  const { totalIncome, totalExpense, budgetValue, expensePercentage } = props;
-
+const Top = () => {
   const getExpensePercentage = (num, total) => {
     if (isFinite(num / total)) {
       return `${Math.round((num / total) * 100)}%`;
@@ -12,43 +11,58 @@ const Top = (props) => {
   };
 
   return (
-    <div className="top">
-      <div className="budget">
-        <div className="budget__title">
-          Available Budget in{" "}
-          <span className="budget__title--month">{getMonth()}</span>:
-        </div>
+    <Consumer>
+      {(value) => {
+        const { allData } = value;
 
-        <div className="budget__value">
-          {" "}
-          {budgetValue > 0
-            ? `+ ${budgetValue.toFixed(2)}`
-            : budgetValue.toFixed(2)}
-        </div>
+        const incomes = allData.filter((item) => item.type === "inc");
+        const expenses = allData.filter((item) => item.type === "exp");
+        //calculate totals
+        const totalIncome = incomes.reduce((acc, cur) => acc + cur.amount, 0);
+        const totalExpense = expenses.reduce((acc, cur) => acc + cur.amount, 0);
+        //budget value
+        const budgetValue = totalIncome - totalExpense;
+        return (
+          <div className="top">
+            <div className="budget">
+              <div className="budget__title">
+                Available Budget in{" "}
+                <span className="budget__title--month">{getMonth()}</span>:
+              </div>
 
-        <div className="budget__income clearfix">
-          <div className="budget__income--text">Income</div>
-          <div className="right">
-            <div className="budget__income--value">
-              + {totalIncome.toFixed(2)}
+              <div className="budget__value">
+                {" "}
+                {budgetValue > 0
+                  ? `+ ${budgetValue.toFixed(2)}`
+                  : budgetValue.toFixed(2)}
+              </div>
+
+              <div className="budget__income clearfix">
+                <div className="budget__income--text">Income</div>
+                <div className="right">
+                  <div className="budget__income--value">
+                    + {totalIncome.toFixed(2)}
+                  </div>
+                  <div className="budget__income--percentage">&nbsp;</div>
+                </div>
+              </div>
+
+              <div className="budget__expenses clearfix">
+                <div className="budget__expenses--text">Expenses</div>
+                <div className="right clearfix">
+                  <div className="budget__expenses--value">
+                    - {totalExpense.toFixed(2)}
+                  </div>
+                  <div className="budget__expenses--percentage">
+                    {getExpensePercentage(totalExpense, totalIncome)}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="budget__income--percentage">&nbsp;</div>
           </div>
-        </div>
-
-        <div className="budget__expenses clearfix">
-          <div className="budget__expenses--text">Expenses</div>
-          <div className="right clearfix">
-            <div className="budget__expenses--value">
-              - {totalExpense.toFixed(2)}
-            </div>
-            <div className="budget__expenses--percentage">
-              {getExpensePercentage(totalExpense, totalIncome)}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        );
+      }}
+    </Consumer>
   );
 };
 

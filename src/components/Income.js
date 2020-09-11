@@ -10,7 +10,7 @@ const Income = (props) => {
         <div className="item__delete">
           <button
             className="item__delete--btn"
-            onClick={props.handleDelete.bind(this, id)}
+            // onClick={props.handleDelete.bind(this, id)}
           >
             <i className="ion-ios-close-outline"></i>
           </button>
