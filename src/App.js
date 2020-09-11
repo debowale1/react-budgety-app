@@ -11,26 +11,26 @@ import { Provider } from "./context";
 
 class App extends Component {
   //handle submit
-  handleClick = (type, description, value) => {
-    console.log(type, description, value);
+  // handleClick = (type, description, value) => {
+  //   console.log(type, description, value);
 
-    //create new budget item
-    const newItem = {
-      id: uuidv4(),
-      description,
-      amount: +value,
-      type,
-    };
-    //add the new Item to the state
-    this.setState({ allData: [...this.state.allData, newItem] });
-    //clear form state
-  };
+  //   //create new budget item
+  //   const newItem = {
+  //     id: uuidv4(),
+  //     description,
+  //     amount: +value,
+  //     type,
+  //   };
+  //   //add the new Item to the state
+  //   this.setState({ allData: [...this.state.allData, newItem] });
+  //   //clear form state
+  // };
   //delete item
-  handleDelete = (id) => {
-    this.setState({
-      allData: this.state.allData.filter((item) => item.id !== id),
-    });
-  };
+  // handleDelete = (id) => {
+  //   this.setState({
+  //     allData: this.state.allData.filter((item) => item.id !== id),
+  //   });
+  // };
   render() {
     return (
       <Provider>

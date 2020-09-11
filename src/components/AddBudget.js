@@ -45,12 +45,12 @@ class AddBudget extends Component {
           />
           <button
             className="add__btn"
-            onClick={this.props.handleClick.bind(
-              this,
-              type,
-              description,
-              value
-            )}
+            // onClick={this.props.handleClick.bind(
+            //   this,
+            //   type,
+            //   description,
+            //   value
+            // )}
           >
             <i className="ion-ios-checkmark-outline"></i>
           </button>
