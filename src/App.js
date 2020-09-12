@@ -6,7 +6,6 @@ import Header from "./components/layout/Header";
 import About from "./components/layout/About";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { v4 as uuidv4 } from "uuid";
 import { Provider } from "./context";
 
 class App extends Component {
@@ -41,9 +40,9 @@ class App extends Component {
               <Route exact path="/">
                 <Top />
                 <div className="bottom">
-                  <AddBudget handleClick={this.handleClick} />
+                  <AddBudget />
                   <div className="container clearfix">
-                    <IncomeExpenseContainer handleDelete={this.handleDelete} />
+                    <IncomeExpenseContainer />
                   </div>
                 </div>
               </Route>

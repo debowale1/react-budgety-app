@@ -1,12 +1,18 @@
 import React, { Component } from "react";
-
+//context
 const Context = React.createContext();
+//reducers
 const reducer = (state, action) => {
   switch (action.type) {
     case "DELETE_BUDGET":
       return {
         ...state,
         allData: state.allData.filter((data) => data.id !== action.payload),
+      };
+    case "ADD_BUDGET":
+      return {
+        ...state,
+        allData: [...state.allData, action.payload],
       };
     default:
       return state;
